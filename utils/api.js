@@ -1,12 +1,29 @@
 import { AsyncStorage } from 'react-native'
+import store, { receiveDecks } from '../store'
 
 const DECK_STORAGE_KEY = 'mobile-flashcards:decks'
 
 // return all of the decks along with their titles, questions, and answers.
-export function getDecks() {
+function getDecks() {
 	return AsyncStorage.getItem(DECK_STORAGE_KEY)
 		.then( json => JSON.parse(json) )
 }
+
+export function loadState() {
+	getDecks().then( decks => store.dispatch( receiveDecks(decks) ))
+}
+
+
+function setDecks(decks) {
+	AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(decks))
+}
+
+export function saveState() {
+	setDecks( store.getState() )
+}
+
+
+/*
 
 // take in a single id (title) argument and return the deck associated with that id.
 export function getDeck(title) {
@@ -29,11 +46,9 @@ export function addCardToDeck(title, card) {
 		})
 }
 
+*/
 
 
-export function saveDecks(decks) {
-	AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(decks))
-}
 
 /*
 // For testing

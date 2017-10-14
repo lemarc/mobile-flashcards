@@ -5,8 +5,8 @@ import { connect } from 'react-redux'
 class DeckList extends Component {
 	render() {
 		return (
-			<View>
-				<Text>{JSON.stringify(this.props)}</Text>
+			<View style={styles.container}>
+				<Text>{JSON.stringify(this.props.decks)}</Text>
 			</View>
 		)
 	}
