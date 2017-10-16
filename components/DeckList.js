@@ -1,12 +1,20 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text } from 'react-native'
+import { StyleSheet, View, Text, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 
+import DeckPreview from './DeckPreview'
+
 class DeckList extends Component {
+
 	render() {
+		const { deckTitles } = this.props
 		return (
 			<View style={styles.container}>
-				<Text>{JSON.stringify(this.props.decks)}</Text>
+				<FlatList 
+					data={deckTitles}
+					renderItem={ ({item}) => <DeckPreview title={item}/> }
+					keyExtractor={ item => item }
+				/>
 			</View>
 		)
 	}
@@ -15,15 +23,25 @@ class DeckList extends Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		alignItems: 'center',
-		justifyContent: 'center',
 	},
 })
 
 function mapStateToProps(state) {
 	return {
-		decks: state
+		deckTitles: Object.keys(state)
 	}
 }
 
 export default connect(mapStateToProps)(DeckList)
+
+//<Text>{JSON.stringify(decks)}</Text>
+/*
+function mapStateToProps(state) {
+	return {
+		decks: Object.keys(state).reduce( (acc, key) => {
+			acc.push(state[key])
+			return acc
+		}, [])
+	}
+}
+*/
