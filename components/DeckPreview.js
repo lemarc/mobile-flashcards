@@ -6,7 +6,12 @@ class DeckPreview extends Component {
 	render() {
 		const { title, cardCount } = this.props
 		return (
-			<TouchableOpacity style={styles.container}>
+			<TouchableOpacity
+				style={styles.container}
+				onPress={()=>this.props.navigation.navigate(
+				'DeckDetail',
+				{ title }
+			)}>
 				<Text style={styles.title}>{title}</Text>
 				<Text style={styles.count}>{cardCount} cards</Text>
 			</TouchableOpacity>
@@ -22,7 +27,8 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		padding: 10,
 		margin: 10,
-		backgroundColor: '#bbb'
+		backgroundColor: '#bbb',
+		borderRadius: 10
 	},
 	title: {
 		fontSize: 24,

@@ -7,12 +7,12 @@ import DeckPreview from './DeckPreview'
 class DeckList extends Component {
 
 	render() {
-		const { deckTitles } = this.props
+		const { deckTitles, navigation } = this.props
 		return (
 			<View style={styles.container}>
 				<FlatList 
 					data={deckTitles}
-					renderItem={ ({item}) => <DeckPreview title={item}/> }
+					renderItem={ ({item}) => <DeckPreview title={item} navigation={navigation}/> }
 					keyExtractor={ item => item }
 				/>
 			</View>
