@@ -8,27 +8,37 @@ import StatusBarContainer from './components/StatusBarContainer'
 // Views
 import DeckList from './components/DeckList'
 import DeckDetail from './components/DeckDetail'
+import AddCard from './components/AddCard'
 
 import { loadState } from './utils/api'
+
+const stackNavOptions = {
+	headerTintColor: '#fff',
+	headerStyle: {
+		backgroundColor: '#bbb'
+	},
+	headerTitleStyle: {
+		fontSize: 30
+	}
+}
 
 const MainNavigator = StackNavigator({
 	Home: {
 		screen: DeckList,
 		navigationOptions: {
-			//header: null
+			...stackNavOptions,
 			title: 'Decks'
 		}
 	},
 	DeckDetail: {
 		screen: DeckDetail,
+		navigationOptions: stackNavOptions
+	},
+	AddCard: {
+		screen: AddCard,
 		navigationOptions: {
-			headerTintColor: '#fff',
-			headerStyle: {
-				backgroundColor: '#bbb'
-			},
-			headerTitleStyle: {
-				fontSize: 30
-			}
+			...stackNavOptions,
+			title: 'Add Card'
 		}
 	}
 })
