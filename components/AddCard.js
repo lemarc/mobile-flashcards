@@ -54,12 +54,15 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	input: {
-		padding: 10
+		margin: 10,
+		padding: 10,
+		backgroundColor: '#ddd'
 	},
 	button: {
 		backgroundColor: 'blue',
 		borderRadius: 5,
-		padding: 5
+		padding: 5,
+		alignSelf: 'center'
 	},
 	buttonText: {
 		color: 'white'
@@ -69,8 +72,7 @@ const styles = StyleSheet.create({
 function mapStateToProps(state, {navigation}) {
 	const { title } = navigation.state.params
 	return {
-		title,
-		cards: state[title].cards
+		title
 	}
 }
 

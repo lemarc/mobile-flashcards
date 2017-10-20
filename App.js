@@ -9,6 +9,7 @@ import StatusBarContainer from './components/StatusBarContainer'
 import DeckList from './components/DeckList'
 import DeckDetail from './components/DeckDetail'
 import AddCard from './components/AddCard'
+import AddDeck from './components/AddDeck'
 
 import { loadState } from './utils/api'
 
@@ -39,6 +40,13 @@ const MainNavigator = StackNavigator({
 		navigationOptions: {
 			...stackNavOptions,
 			title: 'Add Card'
+		}
+	},
+	AddDeck: {
+		screen: AddDeck,
+		navigationOptions: {
+			...stackNavOptions,
+			title: 'New Deck'
 		}
 	}
 })
