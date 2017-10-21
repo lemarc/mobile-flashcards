@@ -2,40 +2,23 @@ import React, { Component } from 'react'
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 
-class DeckDetail extends Component {
-	static navigationOptions = ({navigation}) => {
-		const { title } = navigation.state.params
-
-		return {
-			title
-		}
+class Quiz extends Component {
+	state = {
+		cardIndex: 0,
+		correct: 0
 	}
-	
 	render() {
 		const { title, cards } = this.props
 		return (
 			<View style={styles.container}>
-				<TouchableOpacity
-					style={styles.button}
-					onPress={()=>this.props.navigation.navigate(
-					'AddCard',
-					{ title }
-				)}>
-					<Text style={styles.buttonText}>
-						Add Card
-					</Text>
-				</TouchableOpacity>
-				<TouchableOpacity
-					style={styles.button}
-					onPress={()=>this.props.navigation.navigate(
-					'Quiz',
-					{ title }
-				)}>
-					<Text style={styles.buttonText}>
-						Start Quiz
-					</Text>
-				</TouchableOpacity>
 				<Text>{JSON.stringify(cards)}</Text>
+				<TouchableOpacity
+					style={styles.button}
+					onPress={()=>null}>
+					<Text style={styles.buttonText}>
+						Flip
+					</Text>
+				</TouchableOpacity>
 			</View>
 		)
 	}
@@ -70,4 +53,4 @@ function mapStateToProps(state, {navigation}) {
 	}
 }
 
-export default connect(mapStateToProps)(DeckDetail)
+export default connect(mapStateToProps)(Quiz)

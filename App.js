@@ -10,6 +10,7 @@ import DeckList from './components/DeckList'
 import DeckDetail from './components/DeckDetail'
 import AddCard from './components/AddCard'
 import AddDeck from './components/AddDeck'
+import Quiz from './components/Quiz'
 
 import { loadState } from './utils/api'
 
@@ -47,6 +48,13 @@ const MainNavigator = StackNavigator({
 		navigationOptions: {
 			...stackNavOptions,
 			title: 'New Deck'
+		}
+	},
+	Quiz: {
+		screen: Quiz,
+		navigationOptions: {
+			...stackNavOptions,
+			title: 'Quiz'
 		}
 	}
 })
