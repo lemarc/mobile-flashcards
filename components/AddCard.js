@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, Text, TextInput } from 'react-native'
 import { connect } from 'react-redux'
+
+import Button from './Button'
 
 import { addCard } from '../store'
 import { saveState } from '../utils/api'
@@ -35,17 +37,14 @@ class AddCard extends Component {
 						onChangeText={ text => this.setState( () => ({answer: text}) ) }
 					/>
 				</View>
-				<TouchableOpacity
-					style={styles.button}
+				<Button
+					text='Add'
 					onPress={()=>{
 						addCard({question, answer})
 						saveState()
 						navigation.goBack()
-					}}>
-					<Text style={styles.buttonText}>
-						Add
-					</Text>
-				</TouchableOpacity>
+				}}/>
+
 			</View>
 		)
 	}
@@ -70,20 +69,6 @@ const styles = StyleSheet.create({
 		backgroundColor: 'white',
 		margin: 5,
 		padding: 5
-	},
-	button: {
-		backgroundColor: 'black',
-		borderRadius: 10,
-		margin: 5,
-		paddingLeft: 30,
-		paddingRight: 30,
-		paddingTop: 10,
-		paddingBottom: 10,
-		alignSelf: 'center'
-	},
-	buttonText: {
-		fontSize: 20,
-		color: 'white'
 	}
 })
 

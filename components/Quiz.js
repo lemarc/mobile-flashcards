@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, Text } from 'react-native'
 import { connect } from 'react-redux'
+
+import Button from './Button'
 
 class Quiz extends Component {
 	state = {
@@ -12,13 +14,10 @@ class Quiz extends Component {
 		return (
 			<View style={styles.container}>
 				<Text>{JSON.stringify(cards)}</Text>
-				<TouchableOpacity
-					style={styles.button}
-					onPress={()=>null}>
-					<Text style={styles.buttonText}>
-						Flip
-					</Text>
-				</TouchableOpacity>
+				<Button
+					text='Flip'
+					onPress={()=>null}
+				/>
 			</View>
 		)
 	}
@@ -28,20 +27,6 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		alignItems: 'center'
-	},
-	button: {
-		backgroundColor: 'black',
-		borderRadius: 10,
-		margin: 5,
-		paddingLeft: 30,
-		paddingRight: 30,
-		paddingTop: 10,
-		paddingBottom: 10,
-		alignSelf: 'center'
-	},
-	buttonText: {
-		fontSize: 20,
-		color: 'white'
 	}
 })
 

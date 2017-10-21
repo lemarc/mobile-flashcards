@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, Text, TextInput } from 'react-native'
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
+
+import Button from './Button'
 
 import { addDeck } from '../store'
 import { saveState } from '../utils/api'
@@ -29,9 +31,9 @@ class AddDeck extends Component {
 						onChangeText={ text => this.setState( () => ({title: text}) ) }
 					/>
 				</View>
-				<TouchableOpacity
+				<Button
 					disabled={alreadyExists || !title}
-					style={styles.button}
+					text='Add'
 					onPress={()=>{
 						addDeck(title)
 						//saveState()
@@ -47,13 +49,8 @@ class AddDeck extends Component {
 								NavigationActions.navigate({ routeName: 'DeckDetail', params: {title} })
 							]
 						}))
+				}}/>
 
-						
-					}}>
-					<Text style={styles.buttonText}>
-						Add
-					</Text>
-				</TouchableOpacity>
 				{ alreadyExists &&
 					<Text style={{color: 'red'}}>
 						A deck with this title already exists.
@@ -83,20 +80,6 @@ const styles = StyleSheet.create({
 		backgroundColor: 'white',
 		margin: 5,
 		padding: 5
-	},
-	button: {
-		backgroundColor: 'black',
-		borderRadius: 10,
-		margin: 5,
-		paddingLeft: 30,
-		paddingRight: 30,
-		paddingTop: 10,
-		paddingBottom: 10,
-		alignSelf: 'center'
-	},
-	buttonText: {
-		fontSize: 20,
-		color: 'white'
 	}
 })
 
