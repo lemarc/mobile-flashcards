@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
+import { NavigationActions } from 'react-navigation'
 
 import { addDeck } from '../store'
 import { saveState } from '../utils/api'
@@ -14,25 +15,40 @@ class AddDeck extends Component {
 		const { titles, navigation, addDeck } = this.props
 		const { title } = this.state
 
+		// Check if there is already a deck with the same title
 		const alreadyExists = titles.indexOf(title) >= 0
 
 		return (
 			<View style={styles.container}>
 				<View style={styles.input}>
-					<Text>Title:</Text>
+					<Text style={styles.inputTitle}>Title</Text>
 					<TextInput
+						style={styles.textInput}
 						placeholder='title' 
 						value={title}
 						onChangeText={ text => this.setState( () => ({title: text}) ) }
 					/>
 				</View>
 				<TouchableOpacity
-					disabled={alreadyExists || !title }
+					disabled={alreadyExists || !title}
 					style={styles.button}
 					onPress={()=>{
 						addDeck(title)
 						//saveState()
-						navigation.goBack()
+
+						//navigation.navigate( 'DeckDetail', { title } )
+
+						// Doesn't show an animation and there doesn't seem to be a fix currently
+						// https://github.com/react-community/react-navigation/issues/1663
+						navigation.dispatch(new NavigationActions.reset({
+							index: 1,
+							actions: [
+								NavigationActions.navigate({ routeName: 'Home' }),
+								NavigationActions.navigate({ routeName: 'DeckDetail', params: {title} })
+							]
+						}))
+
+						
 					}}>
 					<Text style={styles.buttonText}>
 						Add
@@ -55,15 +71,31 @@ const styles = StyleSheet.create({
 	input: {
 		margin: 10,
 		padding: 10,
-		backgroundColor: '#ddd'
+		backgroundColor: 'black',
+	},
+	inputTitle: {
+		fontSize: 20,
+		color: 'white',
+		alignSelf: 'center'
+	},
+	textInput: {
+		fontSize: 20,
+		backgroundColor: 'white',
+		margin: 5,
+		padding: 5
 	},
 	button: {
-		backgroundColor: 'blue',
-		borderRadius: 5,
-		padding: 5,
+		backgroundColor: 'black',
+		borderRadius: 10,
+		margin: 5,
+		paddingLeft: 30,
+		paddingRight: 30,
+		paddingTop: 10,
+		paddingBottom: 10,
 		alignSelf: 'center'
 	},
 	buttonText: {
+		fontSize: 20,
 		color: 'white'
 	}
 })

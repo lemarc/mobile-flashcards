@@ -4,11 +4,11 @@ import { connect } from 'react-redux'
 
 class DeckPreview extends Component {
 	render() {
-		const { title, cardCount } = this.props
+		const { title, cardCount, navigation } = this.props
 		return (
 			<TouchableOpacity
 				style={styles.container}
-				onPress={()=>this.props.navigation.navigate(
+				onPress={()=>navigation.navigate(
 				'DeckDetail',
 				{ title }
 			)}>
@@ -27,15 +27,17 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		padding: 10,
 		margin: 10,
-		backgroundColor: '#bbb',
+		backgroundColor: 'black',
 		borderRadius: 10
 	},
 	title: {
 		fontSize: 24,
-		fontWeight: 'bold'
+		fontWeight: 'bold',
+		color: 'white'
 	},
 	count: {
-		fontSize: 20
+		fontSize: 20,
+		color: 'white'
 	}
 })
 

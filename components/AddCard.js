@@ -18,16 +18,18 @@ class AddCard extends Component {
 		return (
 			<View style={styles.container}>
 				<View style={styles.input}>
-					<Text>Question:</Text>
+					<Text style={styles.inputTitle}>Question</Text>
 					<TextInput
+						style={styles.textInput}
 						placeholder='question' 
 						value={question}
 						onChangeText={ text => this.setState( () => ({question: text}) ) }
 					/>
 				</View>
 				<View style={styles.input}>
-					<Text>Answer:</Text>
+					<Text style={styles.inputTitle}>Answer</Text>
 					<TextInput
+						style={styles.textInput}
 						placeholder='answer' 
 						value={answer}
 						onChangeText={ text => this.setState( () => ({answer: text}) ) }
@@ -56,15 +58,31 @@ const styles = StyleSheet.create({
 	input: {
 		margin: 10,
 		padding: 10,
-		backgroundColor: '#ddd'
+		backgroundColor: 'black',
+	},
+	inputTitle: {
+		fontSize: 20,
+		color: 'white',
+		alignSelf: 'center'
+	},
+	textInput: {
+		fontSize: 20,
+		backgroundColor: 'white',
+		margin: 5,
+		padding: 5
 	},
 	button: {
-		backgroundColor: 'blue',
-		borderRadius: 5,
-		padding: 5,
+		backgroundColor: 'black',
+		borderRadius: 10,
+		margin: 5,
+		paddingLeft: 30,
+		paddingRight: 30,
+		paddingTop: 10,
+		paddingBottom: 10,
 		alignSelf: 'center'
 	},
 	buttonText: {
+		fontSize: 20,
 		color: 'white'
 	}
 })

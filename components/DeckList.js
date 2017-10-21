@@ -33,6 +33,7 @@ class DeckList extends Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+		backgroundColor: 'white'
 	},
 	addDeckLink: {
 		flex: 1,

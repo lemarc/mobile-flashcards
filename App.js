@@ -14,9 +14,9 @@ import AddDeck from './components/AddDeck'
 import { loadState } from './utils/api'
 
 const stackNavOptions = {
-	headerTintColor: '#fff',
+	headerTintColor: 'white',
 	headerStyle: {
-		backgroundColor: '#bbb'
+		backgroundColor: 'black'
 	},
 	headerTitleStyle: {
 		fontSize: 30
@@ -60,7 +60,7 @@ export default class App extends Component {
 		return (
 			<Provider store={store}>
 				<View style={styles.container}>
-					<StatusBarContainer />
+					<StatusBarContainer backgroundColor='white' />
 					<MainNavigator />
 				</View>
 			</Provider>

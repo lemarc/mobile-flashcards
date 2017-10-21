@@ -37,11 +37,17 @@ const styles = StyleSheet.create({
 		alignItems: 'center'
 	},
 	button: {
-		backgroundColor: 'blue',
-		borderRadius: 5,
-		padding: 5
+		backgroundColor: 'black',
+		borderRadius: 10,
+		margin: 5,
+		paddingLeft: 30,
+		paddingRight: 30,
+		paddingTop: 10,
+		paddingBottom: 10,
+		alignSelf: 'center'
 	},
 	buttonText: {
+		fontSize: 20,
 		color: 'white'
 	}
 })
