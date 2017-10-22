@@ -6,6 +6,9 @@ class DeckPreview extends Component {
 	render() {
 		const { title, cardCount, navigation } = this.props
 		return (
+			// It is possible to navigate to the same view twice by clicking fast
+			// Won't be implementing fix since ideal solution requires modifying files in node_modules 
+			// https://github.com/react-community/react-navigation/issues/271
 			<TouchableOpacity
 				style={styles.container}
 				onPress={()=>navigation.navigate(

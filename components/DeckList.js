@@ -5,11 +5,13 @@ import { connect } from 'react-redux'
 import DeckPreview from './DeckPreview'
 
 function AddDeckLink({navigation}) {
-	return <TouchableOpacity
-		style={styles.addDeckLink}
-		onPress={()=>navigation.navigate('AddDeck')}>
-		<Text style={styles.addDeckText}>Create New Deck</Text>
-	</TouchableOpacity>
+	return (
+		<TouchableOpacity
+			style={styles.addDeckLink}
+			onPress={()=>navigation.navigate('AddDeck')}>
+			<Text style={styles.addDeckText}>Create New Deck</Text>
+		</TouchableOpacity>
+	)
 }
 
 class DeckList extends Component {

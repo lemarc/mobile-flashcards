@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, View, Text, TextInput } from 'react-native'
 import { connect } from 'react-redux'
 
+import InputArea from './InputArea'
 import Button from './Button'
 
 import { addCard } from '../store'
@@ -19,24 +20,18 @@ class AddCard extends Component {
 
 		return (
 			<View style={styles.container}>
-				<View style={styles.input}>
-					<Text style={styles.inputTitle}>Question</Text>
-					<TextInput
-						style={styles.textInput}
-						placeholder='question' 
-						value={question}
-						onChangeText={ text => this.setState( () => ({question: text}) ) }
-					/>
-				</View>
-				<View style={styles.input}>
-					<Text style={styles.inputTitle}>Answer</Text>
-					<TextInput
-						style={styles.textInput}
-						placeholder='answer' 
-						value={answer}
-						onChangeText={ text => this.setState( () => ({answer: text}) ) }
-					/>
-				</View>
+				<InputArea
+					title='Question'
+					value={question}
+					placeholder='question'
+					onChangeText={ text => this.setState( () => ({question: text}) ) }
+				/>
+				<InputArea
+					title='Answer'
+					value={answer}
+					placeholder='answer'
+					onChangeText={ text => this.setState( () => ({answer: text}) ) }
+				/>
 				<Button
 					text='Add'
 					onPress={()=>{
@@ -44,7 +39,6 @@ class AddCard extends Component {
 						saveState()
 						navigation.goBack()
 				}}/>
-
 			</View>
 		)
 	}
@@ -53,22 +47,6 @@ class AddCard extends Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-	},
-	input: {
-		margin: 10,
-		padding: 10,
-		backgroundColor: 'black',
-	},
-	inputTitle: {
-		fontSize: 20,
-		color: 'white',
-		alignSelf: 'center'
-	},
-	textInput: {
-		fontSize: 20,
-		backgroundColor: 'white',
-		margin: 5,
-		padding: 5
 	}
 })
 
