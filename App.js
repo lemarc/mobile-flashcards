@@ -13,6 +13,7 @@ import AddDeck from './components/AddDeck'
 import Quiz from './components/Quiz'
 
 import { loadState } from './utils/api'
+import { setLocalNotification } from './utils/notifications'
 
 const stackNavOptions = {
 	headerTintColor: 'white',
@@ -62,6 +63,7 @@ const MainNavigator = StackNavigator({
 export default class App extends Component {
 	componentDidMount() {
 		loadState()
+		setLocalNotification()
 	}
 
 	render() {

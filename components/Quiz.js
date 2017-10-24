@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import Button from './Button'
 import FlippableCard from './FlippableCard'
 
+import { clearLocalNotifications, setLocalNotification } from '../utils/notifications'
+
 function GradeButton({onPress, text, backgroundColor, ...props}) {
 	return (
 		<TouchableOpacity
@@ -41,7 +43,11 @@ class Quiz extends Component {
 
 		// Show results after last card
 		if (cardIndex === cardCount) {
+			// Calculate the percentage correct after completing quiz
 			const percentage = correct / cardCount * 100 >> 0
+			// Stop todays notification if a quiz is completed and set one for tomorrow
+			clearLocalNotifications().then(setLocalNotification)
+
 			return (
 				<View style={styles.container}>
 					<Text style={styles.scoreText}>You got {correct} out of {cardCount} correct!</Text>
