@@ -12,6 +12,7 @@ export default class FlippableCard extends Component {
 	}
 
 	componentWillReceiveProps({cardIndex}) {
+		// Reset initial state when changing cards
 		if (!(cardIndex===this.props.cardIndex))
 		this.setState({
 			frontScale: new Animated.Value(1),
@@ -48,7 +49,6 @@ export default class FlippableCard extends Component {
 
 		return (
 			<View style={styles.container}>
-				<Text>{frontScale.value}</Text>
 				<View style={styles.container}>
 					<Animated.View
 						style={[styles.face, {width, height}, {transform: [{scaleX: frontScale}]}]}

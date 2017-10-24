@@ -22,7 +22,8 @@ function GradeButton({onPress, text, backgroundColor, ...props}) {
 class Quiz extends Component {
 	state = {
 		cardIndex: 0,
-		correct: 0
+		correct: 0,
+		flipped: false
 	}
 
 	restart = () => {
@@ -34,14 +35,24 @@ class Quiz extends Component {
 	}
 
 	render() {
-		const { title, cards } = this.props
+		const { title, cards, navigation } = this.props
 		const { cardIndex, correct, flipped } = this.state
 		const cardCount = cards.length
 
 		if (cardIndex === cardCount) {
+			const percentage = correct / cardCount * 100 >> 0
 			return (
 				<View style={styles.container}>
-					<Text>You got {correct} out of {cardCount} correct!</Text>
+					<Text style={styles.scoreText}>You got {correct} out of {cardCount} correct!</Text>
+					<Text style={styles.percentageText}>{percentage}%</Text>
+					<Button
+						text='Start Over'
+						onPress={this.restart}
+					/>
+					<Button
+						text='Finish'
+						onPress={()=>{navigation.goBack()}}
+					/>
 				</View>
 			)
 		}
@@ -60,18 +71,18 @@ class Quiz extends Component {
 					onFlip={()=>this.setState({flipped:true})}
 				/>
 				<View style={styles.grade}>
-					<GradeButton
-						disabled={!flipped}
+					{ flipped && <GradeButton
+						//disabled={!flipped}
 						text='Correct'
 						onPress={()=>this.setState({flipped: false, cardIndex: cardIndex+1, correct: correct+1})}
 						backgroundColor='green'
-					/>
-					<GradeButton
-					disabled={!flipped}
+					/>}
+					{ flipped && <GradeButton
+						//disabled={!flipped}
 						text='Incorrect'
 						onPress={()=>this.setState({flipped: false, cardIndex: cardIndex+1})}
 						backgroundColor='red'
-					/>
+					/>}
 				</View>
 			</View>
 		)
@@ -108,6 +119,17 @@ const styles = StyleSheet.create({
 	buttonText: {
 		fontSize: 20,
 		color: 'white'
+	},
+	scoreText: {
+		fontSize: 28,
+		textAlign: 'center',
+		padding: 10
+	},
+	percentageText: {
+		fontSize: 60,
+		fontWeight: 'bold',
+		textAlign: 'center',
+		padding: 10
 	}
 })
 
@@ -120,12 +142,3 @@ function mapStateToProps(state, {navigation}) {
 }
 
 export default connect(mapStateToProps)(Quiz)
-
-/*
-<Text>{question}</Text>
-				<Text>{answer}</Text>
-				<Button
-					text='Flip'
-					onPress={()=>null}
-				/>
-				*/
