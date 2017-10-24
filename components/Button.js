@@ -1,10 +1,11 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 
-export default function Button({onPress, text, ...props}) {
+export default function Button({onPress, text, backgroundColor, ...props}) {
+	backgroundColor = backgroundColor || 'black'
 	return (
 		<TouchableOpacity
-			style={styles.button}
+			style={[styles.button, {backgroundColor}]}
 			onPress={onPress}
 			{...props}
 		>
@@ -17,7 +18,6 @@ export default function Button({onPress, text, ...props}) {
 
 const styles = StyleSheet.create({
 	button: {
-		backgroundColor: 'black',
 		borderRadius: 10,
 		margin: 5,
 		paddingLeft: 30,

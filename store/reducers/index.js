@@ -1,7 +1,8 @@
 import {
 	RECEIVE_DECKS,
 	ADD_DECK,
-	ADD_CARD
+	ADD_CARD,
+	DELETE_DECK
 } from '../actions'
 
 function decks(state={}, action) {
@@ -28,6 +29,10 @@ function decks(state={}, action) {
 					cards
 				}
 			}
+		case DELETE_DECK :
+			let copy = {...state}
+			delete copy[title]
+			return copy
 		default :
 			return state
 	}

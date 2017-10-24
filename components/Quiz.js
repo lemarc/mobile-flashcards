@@ -39,6 +39,7 @@ class Quiz extends Component {
 		const { cardIndex, correct, flipped } = this.state
 		const cardCount = cards.length
 
+		// Show results after last card
 		if (cardIndex === cardCount) {
 			const percentage = correct / cardCount * 100 >> 0
 			return (
@@ -50,7 +51,7 @@ class Quiz extends Component {
 						onPress={this.restart}
 					/>
 					<Button
-						text='Finish'
+						text='Finished'
 						onPress={()=>{navigation.goBack()}}
 					/>
 				</View>
