@@ -3,16 +3,18 @@ import { AsyncStorage } from 'react-native'
 
 const NOTIFICATION_KEY = 'mobile-flashcards:notifications'
 
-export function clearLocalNotifications() {
-	AsyncStorage.removeItem(NOTIFICATION_KEY)
-		.then(Notifications.cancelAllScheduledNotificationsAsync)
-}
-
 export function resetLocalNotification() {
 	AsyncStorage.removeItem(NOTIFICATION_KEY)
 		.then(Notifications.cancelAllScheduledNotificationsAsync)
 		.then(setLocalNotification)
 }
+
+/* caused error when using cleareLocalNotifications().then(setLocalNotification)
+export function clearLocalNotifications() {
+	AsyncStorage.removeItem(NOTIFICATION_KEY)
+		.then(Notifications.cancelAllScheduledNotificationsAsync)
+}
+*/
 
 function createNotification() {
 	return {
@@ -30,6 +32,8 @@ function createNotification() {
 	}
 }
 
+// From the UdaciFitness in class project
+// Asks the user for permission to send notifications (if not already given) and sets up a notification for the next day.
 export function setLocalNotification() {
 	AsyncStorage.getItem(NOTIFICATION_KEY)
 		.then(JSON.parse)
@@ -41,10 +45,10 @@ export function setLocalNotification() {
 							Notifications.cancelAllScheduledNotificationsAsync()
 
 							let tomorrow = new Date()
-							//tomorrow.setDate(tomorrow.getDate()+1)
-							//tomorrow.setHours(20)
-							//tomorrow.setMinutes(0)
-							tomorrow.setSeconds(tomorrow.getSeconds()+10)
+							tomorrow.setDate(tomorrow.getDate()+1)
+							tomorrow.setHours(20)
+							tomorrow.setMinutes(0)
+							tomorrow.setSeconds(0)
 
 							Notifications.scheduleLocalNotificationAsync(
 								createNotification(),
