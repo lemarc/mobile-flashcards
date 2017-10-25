@@ -1,5 +1,13 @@
 {
-  "expo": {
-    "sdkVersion": "21.0.0"
-  }
+	"expo": {
+		"sdkVersion": "21.0.0",
+		"orientation": "portrait",
+		"name": "MobileFlashcards",
+		"description": "Create your own flashcards.",
+		"slug": "mobile-flashcards",
+		"version": "1.0",
+		"ios": {
+			"bundleIdentifier": "org.udacifitness.exp"
+		}
+	}
 }

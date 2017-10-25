@@ -9,12 +9,16 @@ import Button from './Button'
 import { addDeck } from '../store'
 import { saveState } from '../utils/api'
 
+import { resetLocalNotification } from '../utils/notifications'
+
 class AddDeck extends Component {
 	state = {
 		title: ''
 	}
 
 	render() {
+		resetLocalNotification()
+
 		const { titles, navigation, addDeck } = this.props
 		const { title } = this.state
 

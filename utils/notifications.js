@@ -8,6 +8,12 @@ export function clearLocalNotifications() {
 		.then(Notifications.cancelAllScheduledNotificationsAsync)
 }
 
+export function resetLocalNotification() {
+	AsyncStorage.removeItem(NOTIFICATION_KEY)
+		.then(Notifications.cancelAllScheduledNotificationsAsync)
+		.then(setLocalNotification)
+}
+
 function createNotification() {
 	return {
 		title: "Don't forget to study!",
@@ -35,10 +41,10 @@ export function setLocalNotification() {
 							Notifications.cancelAllScheduledNotificationsAsync()
 
 							let tomorrow = new Date()
-							tomorrow.setDate(tomorrow.getDate()+1)
-							tomorrow.setHours(20)
-							tomorrow.setMinutes(0)
-							tomorrow.setSeconds(0)
+							//tomorrow.setDate(tomorrow.getDate()+1)
+							//tomorrow.setHours(20)
+							//tomorrow.setMinutes(0)
+							tomorrow.setSeconds(tomorrow.getSeconds()+10)
 
 							Notifications.scheduleLocalNotificationAsync(
 								createNotification(),

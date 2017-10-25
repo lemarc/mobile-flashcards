@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import Button from './Button'
 import FlippableCard from './FlippableCard'
 
-import { clearLocalNotifications, setLocalNotification } from '../utils/notifications'
+import { resetLocalNotification } from '../utils/notifications'
 
 function GradeButton({onPress, text, backgroundColor, ...props}) {
 	return (
@@ -45,8 +45,9 @@ class Quiz extends Component {
 		if (cardIndex === cardCount) {
 			// Calculate the percentage correct after completing quiz
 			const percentage = correct / cardCount * 100 >> 0
-			// Stop todays notification if a quiz is completed and set one for tomorrow
-			clearLocalNotifications().then(setLocalNotification)
+			
+			// Stop todays notification and set one for tomorrow
+			resetLocalNotification()
 
 			return (
 				<View style={styles.container}>
